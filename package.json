@@ -1,0 +1,27 @@
+{
+  "name": "swagger",
+  "version": "1.0.0",
+  "description": "swagger test",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "dev": "nodemon --watch '*.js' --exec 'npm start'"
+  },
+  
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lunafonteles/swaggerTest.git"
+  },
+  "keywords": [
+    "swagger",
+    "nodeJS"
+  ],
+  "author": "Luna Fonteles",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "swagger-jsdoc": "^6.2.7",
+    "swagger-ui-express": "^4.6.0",
+    "uuid": "^8.3.2"
+  }
+}

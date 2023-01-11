@@ -1,0 +1,164 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Produtos",
+    "description": "A simple API built with Node.js and Express"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/products": {
+      "post": {
+        "summary": "cria novo produto",
+        "description": "Essa rota cria novos produtos",
+        "tags": ["Products"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Produto já existe"
+          }
+        }
+      },
+      "get": {
+        "summary": "traz todos os produtos",
+        "description": "Essa rota traz todos os produtos",
+        "tags": ["Products"],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não existem produtos cadastrados"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "summary": "traz o produto pelo id",
+        "description": "Essa rota traz o produto pelo id",
+        "tags": ["Products"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id do produto",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "Produto não encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "atualiza produto pelo id",
+        "description": "Essa rota atualiza o produto pelo id",
+        "tags": ["Products"],
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "description": "id do produto",
+            "required": true
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "deleta produto pelo id",
+        "description": "Essa rota deleta o produto pelo id",
+        "tags": ["Products"],
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "description": "id do produto",
+            "required": true
+        }],
+        "responses": {
+          "200": {
+            "description": "OK, produto deletado"
+          },
+          "400": {
+            "description": "ID inválido"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Product": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
